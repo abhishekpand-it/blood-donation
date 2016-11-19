@@ -5,6 +5,8 @@ exports.connect = function (callback) {
 	if (mongo.DB) {
 		return mongo.DB;
 	} else {
+		console.log("PRINT VAR");
+		console.log(process.env.npm_package_config_db);
 		const url = process.env.npm_package_config_db || process.env.MONGOLAB_URI || process.env.DB;
 		
 		if (!url)  {
