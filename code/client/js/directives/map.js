@@ -30,7 +30,7 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 		},
 		controller: function ($scope, $rootScope, $location) {
 			$scope.showAll = true;
-			
+
 			$rootScope.$on('DonatorManager.showLocationMarker', function ($event, pos) {
 				$scope.showAll = false;
 				$scope.hideMarkers($scope._markers);
@@ -47,12 +47,14 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 						draggable: true
 					});
 					$scope._locationMarker.addListener('dragend', function () {
+						$scope.filterMarkers();
 						$rootScope.$emit('DonatorManager.locationMarkerMoved', $scope._locationMarker.getPosition());
 					})
 				} else {
 					$scope._locationMarker.setPosition(pos);
 					$scope._locationMarker.setMap($scope.map);
 				}
+
 			});
 			
 			Socket.on('donatorCreated', function (data) {
@@ -61,6 +63,8 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 				var donator = new Donators(data);
 				$scope.createPin(donator, $scope.map, Map.api.Animation.DROP);
 				$scope._markers.push(donator);
+
+				$scope.filterMarkers();
 			});
 			
 			Socket.on('donatorChanged', function (data) {
@@ -79,6 +83,8 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 						donator.pin.setPosition(newDonator.coordinates);
 					}
 				}
+
+				$scope.filterMarkers();
 			});
 			
 			Socket.on('donatorRemoved', function (id) {
@@ -92,6 +98,8 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 					$scope._markers[index].pin.setMap(null);
 					$scope._markers.splice(index, 1);
 				}
+
+				$scope.filterMarkers();
 			});
 			
 			$rootScope.$on('DonatorManager.hideLocationMarker', function (pos) {
@@ -120,6 +128,8 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 					if (!marker.pin) $scope.createPin(marker);
 					marker.pin.setMap($scope.map);
 				});
+				$scope.filterMarkers($scope.categorySelected);
+
 			};
 			
 			$scope.hideMarkers = function (markers) {
@@ -128,6 +138,7 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 						marker.pin.setMap(null);
 					}
 				});
+				$scope.filterMarkers($scope.categorySelected);
 			};
 			
 			$scope.updateMarkers = function (bounds) {
@@ -144,6 +155,30 @@ angular.module('bdms').directive('bdmsMap', ['Map', 'Donators', 'Socket', functi
 					$scope.showMarkers($scope._markers);
 					
 				});
+				$scope.filterMarkers();
+			};
+
+			$scope.filterMarkers = function () {
+				var category = "";
+				var e = document.getElementById("selected-attr");
+				if(e){
+				var strVal = e.options[e.selectedIndex].value;
+				category = strVal;
+				}
+				category = category.slice(0,-2);
+
+				if($scope._markers)
+			    for (i = 0; i < $scope._markers.length; i++) {
+			        marker = $scope._markers[i].pin;
+			        // If is same category or category not picked
+			        if (marker.label == category || category.length === 0) {
+			            marker.setVisible(true);
+			        }
+			        // Categories don't match 
+			        else {
+			            marker.setVisible(false);
+			        }
+			    }
 			};
 		}
 	};

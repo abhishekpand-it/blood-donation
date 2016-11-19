@@ -28,7 +28,7 @@
       <dt><label for="bloodgroup">Blood Group</label></dt>
       <dl>
         <select class="form-control input-sm" id="bloodgroup" ng-model="donator.bloodGroup" required>
-          <option ng-repeat="group in ['O', 'A', 'B', 'AB']" value="{{group}}">{{group}}</option>
+          <option ng-repeat="group in ['O-','O+','A-','A+','B-','B+','AB-','AB+']" value="{{group}}">{{group}}</option>
         </select>
       </dl>
     </dl>

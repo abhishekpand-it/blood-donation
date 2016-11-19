@@ -1,0 +1,8 @@
+DEMO URL:-
+
+https://blood-test.herokuapp.com/
+
+
+Step: Allow location in browser to go to your location.
+Click “Donate blood”
+Enter your details.

@@ -3,4 +3,18 @@
     <center>
     <h2>Welcome to blood donation management system</h2>
     <a href="/become" class="donate-link">Donate Blood</a></center>
+    <div class="top-heading">
+    Filter Blood Group: 
+    <select id="selected-attr" ng-model="selectedGroup" ng-change="filterMarkers()">
+	    <option value="">Show All</option>
+	    <option value="A+ve">"A+"</option>
+	    <option value="A-ve">"A-"</option>
+	    <option value="B+ve">"B+"</option>
+	    <option value="B-ve">"B-"</option>
+	    <option value="AB+ve">"AB+"</option>
+	    <option value="AB-ve">"AB-"</option>
+	    <option value="O+ve">"O+"</option>
+	    <option value="O-ve">"O-"</option>
+	</select>
+	</div>
 </header>
