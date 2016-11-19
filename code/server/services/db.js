@@ -8,7 +8,7 @@ exports.connect = function (callback) {
 		console.log("PRINT VAR");
 		console.log(process.env.npm_package_config_db);
 		const url = process.env.npm_package_config_db || process.env.MONGOLAB_URI || process.env.DB;
-		
+		url = "mongodb://cyberlord92:overover123@ds157667.mlab.com:57667/blood-donation-management";
 		if (!url)  {
 			console.error('No database url specified. Use env DB, or package.json.');
 			process.exit(1);
