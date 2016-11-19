@@ -7,17 +7,23 @@
 3. Set up MongoDB connection url in `package.json` or use `npm config set bdms:db URL`
 4. Run `npm start`
 
-## Dependencies
 
-1. Angular.
-2. jQuery in one line of code `loadScript`. It would be replaced by vanila JS at refactoring time
-3. Bootstrap for prototyping
-4. Express
-5. Socket.io
-6. MongoDB
-7. Google Maps
+## Running unit tests:
+1. Go to /bdms directory in CML.
+2. Install Mocha is not installed 'npm install mocha'.
+3. Enter 'npm test'.
 
-## Design
+TEST OUTPUT:
+
+  Donators
+    ✓ Creates mongo entry
+    ✓ Creates mongo entry
+    ✓ Creates mongo entry
+
+
+  3 passing (24ms)
+
+
 
 ### Backend
 

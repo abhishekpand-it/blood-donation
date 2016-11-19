@@ -4,15 +4,15 @@ angular.module('bdms').factory('Socket', ['$rootScope', function ($rootScope) {
 		server.on(event, function (data) {
 			if(event == 'donatorCreated'){
 				$("#notification").html('');
-				$("#notification").fadeIn("slow").append('Thanks. Your details has been listed.');
+				$("#notification").fadeIn("slow").append('Thanks. Your details has been listed.').delay(1000).fadeOut("slow");
 			}
 			if(event == 'donatorChanged'){
 				$("#notification").html('');
-				$("#notification").fadeIn("slow").append('Your details has been modified.');
+				$("#notification").fadeIn("slow").append('Your details has been modified.').delay(1000).fadeOut("slow");
 			}
 			if(event == 'donatorRemoved'){
 				$("#notification").html('');
-				$("#notification").fadeIn("slow").append('Your details has been removed.');
+				$("#notification").fadeIn("slow").append('Your details has been removed.').delay(1000).fadeOut("slow");
 			}
 			$(".dismiss").click(function(){
 				$("#notification").html('');
