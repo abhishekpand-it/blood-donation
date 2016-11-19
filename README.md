@@ -9,7 +9,7 @@
 
 ## Dependencies
 
-1. Angular1.
+1. Angular.
 2. jQuery in one line of code `loadScript`. It would be replaced by vanila JS at refactoring time
 3. Bootstrap for prototyping
 4. Express
