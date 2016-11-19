@@ -1,4 +1,5 @@
 <div class="donator">
+  <div ng-show="donator.bloodGroup != undefined">
   <h2>{{donator.getFullName()}}</h2>
   <dl>
     <dt>Blood Group</dt>
@@ -19,4 +20,5 @@
     <dd>{{donator.address}}</dd>
   </dl>
   <a href="/" class="btn btn-link donator-close" type="button">Close</a>
+  </div>
 </div>
