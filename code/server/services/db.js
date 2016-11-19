@@ -5,7 +5,7 @@ exports.connect = function (callback) {
 	if (mongo.DB) {
 		return mongo.DB;
 	} else {
-		const url = process.env.MONGOLAB_URI || process.env.DB || process.env.npm_package_config_db;
+		const url = process.env.npm_package_config_db || process.env.MONGOLAB_URI || process.env.DB;
 		
 		if (!url)  {
 			console.error('No database url specified. Use env DB, or package.json.');
